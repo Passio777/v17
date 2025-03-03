@@ -1,7 +1,7 @@
 /* =========================================
    VARIABLES & CONFIGURATION
    ========================================= */
-   :root {
+:root {
     /* Couleurs principales */
     --primary: #3498db;
     --primary-dark: #2980b9;
@@ -238,4 +238,9 @@ input, textarea, select, button {
             transform: translateY(0);
         }
     }
+}
+.category-name {
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 4px;
 }
