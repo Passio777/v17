@@ -1,0 +1,48 @@
+[
+    {
+        "id": "67c57a48d6ecc757fce0664ea1761",
+        "firstname": "mary",
+        "lastname": "detrez",
+        "email": "md@gmail.com",
+        "password": "$2y$12$oi7u..YiazEUezcyE.9DP.nGrZIAR9kc2om4dlukcvuVLv0fKV67i",
+        "pepper": "cd2f2d6af412a2029f7ead90840cca84",
+        "role": "user",
+        "children": [
+            {
+                "id": "67c57a48d6ea540825222b0412100",
+                "firstname": "Elia",
+                "birthdate": "2017-02-09"
+            },
+            {
+                "id": "67c58ddf78c7888084eb5409c3ed9",
+                "firstname": "Bébé",
+                "birthdate": "2025-01-01"
+            }
+        ],
+        "createdAt": "2025-03-03 09:45:45",
+        "lastLogin": "2025-03-03 12:08:02",
+        "updatedAt": "2025-03-03 11:09:22"
+    },
+    {
+        "id": "67c5836d27f5ceb4b233c05cf0f25",
+        "firstname": "Quentin",
+        "lastname": "castelain",
+        "email": "kentinousss@gmail.com",
+        "password": "$2y$12$Q9MsP4rp2crED\/jd\/7xjSeeokDL7CPu9LeYfHO8N1ewxfvCFJ\/Hj2",
+        "pepper": "d823579033d21764f0e79cf8c869277b",
+        "role": "user",
+        "children": [
+            {
+                "id": "67c5836d27f5398826bb41b0d29f7",
+                "firstname": "Bébé",
+                "birthdate": "2021-01-01"
+            },
+            {
+                "id": "67c5836d27f5b7d815c294704abe5",
+                "firstname": "Kiki",
+                "birthdate": "2018-05-20"
+            }
+        ],
+        "createdAt": "2025-03-03 10:24:45"
+    }
+]

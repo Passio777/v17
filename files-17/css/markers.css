@@ -1,0 +1,214 @@
+/* =========================================
+   MARQUEURS DE CARTE
+   ========================================= */
+/* Base marker styles */
+.event-marker {
+    z-index: 900 !important;
+}
+
+.marker-pin-modern {
+    width: 36px;
+    height: 36px;
+    border-radius: 50% 50% 50% 0;
+    transform-origin: bottom center;
+    position: relative;
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+}
+
+.marker-icon-container {
+    transform: rotate(45deg);
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+/* Indicateur pour les événements payants */
+.marker-paid.marker-pin-modern::before {
+    content: '€';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: gold;
+    color: #333;
+    font-size: 12px;
+    font-weight: bold;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transform: rotate(45deg);
+    z-index: 2;
+}
+
+.marker-paid.marker-pin-modern {
+    border: 1px solid gold;
+    box-shadow: 0 0 6px rgba(255, 215, 0, 0.3);
+}
+
+/* Indicateur pour les événements qui arrivent bientôt */
+.marker-soon-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50% 50% 50% 0;
+    box-shadow: 0 0 8px 2px rgba(255, 255, 0, 0.4);
+    animation: pulse-soon 2s infinite;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.marker-soon.marker-pin-modern {
+    border: 1px solid #ffeb3b;
+}
+
+/* Effet de survol pour les marqueurs */
+.marker-pin-modern.marker-hover {
+    transform: scale(1.1) rotate(-45deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 1000 !important;
+}
+
+/* Effet de pulsation pour les marqueurs */
+.marker-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50% 50% 50% 0;
+    opacity: 0;
+    z-index: -1;
+}
+
+.marker-pulse.pulse-active {
+    animation: pulse-animation 1.5s infinite;
+}
+
+/* Popups de la carte */
+.leaflet-popup {
+    transform-origin: bottom center;
+    animation: popup-appear var(--transition-normal) ease;
+}
+
+.leaflet-popup-content-wrapper {
+    padding: 0;
+    overflow: hidden;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    transition: none;
+}
+
+.leaflet-popup-content {
+    margin: 0;
+    padding: 0;
+    width: 280px !important;
+}
+
+.leaflet-popup-tip {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Styles pour les contenus de popup */
+.event-popup {
+    padding: 0;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    min-width: 250px;
+    max-width: 300px;
+}
+
+.event-popup-header {
+    background-color: var(--light);
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.event-popup-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 50px;
+    background: var(--primary);
+}
+
+.event-popup-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.event-popup-content {
+    padding: 15px;
+    background-color: white;
+}
+
+.event-popup-content p {
+    margin-bottom: 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.event-popup-content i {
+    margin-right: 8px;
+    color: var(--primary);
+    width: 16px;
+    text-align: center;
+    margin-top: 4px;
+}
+
+.event-popup-content .event-date {
+    font-weight: 500;
+    color: var(--dark);
+}
+
+.event-popup-content .event-creator {
+    font-style: italic;
+    color: var(--gray);
+    margin-top: 10px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.event-popup-footer {
+    padding: 12px 15px;
+    background-color: var(--light);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Style pour enfants */
+.children-only-bubble {
+    font-size: 0.9rem;
+    color: var(--warning);
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.children-only-bubble i {
+    margin-right: 5px;
+    color: var(--warning);
+}

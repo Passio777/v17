@@ -1,0 +1,241 @@
+/* =========================================
+   VARIABLES & CONFIGURATION
+   ========================================= */
+   :root {
+    /* Couleurs principales */
+    --primary: #3498db;
+    --primary-dark: #2980b9;
+    --primary-light: #e3f2fd;
+    --secondary: #7f8c8d;
+    --secondary-dark: #6c7a7d;
+    --success: #2ecc71;
+    --success-light: #e8f7f0;
+    --danger: #e74c3c;
+    --danger-light: #feeae8;
+    --warning: #f39c12;
+    --warning-light: #fef9e7;
+    --dark: #343a40;
+    --light: #f8f9fa;
+    --gray: #7f8c8d;
+    --border: #eee;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+
+    /* Espacement */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+
+    /* Bordures et arrondis */
+    --border-radius-sm: 3px;
+    --border-radius-md: 4px;
+    --border-radius-lg: 8px;
+    --border-radius-full: 50%;
+
+    /* Transitions */
+    --transition-fast: 0.2s;
+    --transition-normal: 0.3s;
+    --transition-slow: 0.5s;
+
+    /* Z-index */
+    --z-modal: 1001;
+    --z-header: 1000;
+    --z-float: 900;
+    --z-map: 1;
+
+    /* Ombres */
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================
+   RESET ET BASE
+   ========================================= */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: background-color var(--transition-fast), color var(--transition-fast),
+                border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    color: var(--dark);
+    line-height: 1.6;
+    background-color: var(--light);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus styles for accessibility */
+:focus {
+    outline: 2px solid rgba(52, 152, 219, 0.5);
+    outline-offset: 2px;
+}
+
+input, textarea, select, button {
+    font-family: inherit;
+    font-size: inherit;
+    will-change: transform, opacity;
+}
+
+/* =========================================
+   SCROLLBAR
+   ========================================= */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* =========================================
+   UTILITAIRES
+   ========================================= */
+.hidden {
+    display: none !important;
+}
+
+.keyboard-focus:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* =========================================
+   ANIMATIONS ET EFFETS
+   ========================================= */
+@media (prefers-reduced-motion: no-preference) {
+    .animate-fade-in {
+        animation: fadeIn var(--transition-normal) ease forwards;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulsate {
+        0% {
+            transform: scale(1);
+            opacity: 0;
+        }
+        50% {
+            opacity: 0.4;
+        }
+        100% {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(46, 204, 113, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+        }
+    }
+
+    @keyframes success-glow {
+        0% {
+            box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4);
+        }
+        70% {
+            box-shadow: 0 0 0 20px rgba(46, 204, 113, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+        }
+    }
+
+    @keyframes notifyIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes zoomIn {
+        0% { transform: scale(0.95); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes popup-appear {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes dropdownFadeIn {
+        from { opacity: 0; transform: translateY(-10px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes pulse-soon {
+        0% {
+            opacity: 0.4;
+            box-shadow: 0 0 6px 1px rgba(255, 255, 0, 0.4);
+        }
+        50% {
+            opacity: 0.7;
+            box-shadow: 0 0 10px 3px rgba(255, 255, 0, 0.6);
+        }
+        100% {
+            opacity: 0.4;
+            box-shadow: 0 0 6px 1px rgba(255, 255, 0, 0.4);
+        }
+    }
+
+    @keyframes pulse-animation {
+        0% {
+            transform: scale(1);
+            opacity: 0.5;
+        }
+        50% {
+            transform: scale(1.4);
+            opacity: 0;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes commentFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}

@@ -1,0 +1,74 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Nature et Environnement",
+      "icon": "🌳",
+      "description": "Découverte de la faune, de la flore, des écosystèmes, écologie",
+      "color": "#4CAF50"
+    },
+    {
+      "id": 2,
+      "name": "Sciences et Techniques",
+      "icon": "🔬",
+      "description": "Expérimentations, astronomie, physique, chimie, ingénierie",
+      "color": "#2196F3"
+    },
+    {
+      "id": 3,
+      "name": "Histoire et Patrimoine",
+      "icon": "🏰",
+      "description": "Lieux historiques, musées, reconstitutions, archéologie",
+      "color": "#795548"
+    },
+    {
+      "id": 4,
+      "name": "Arts et Expression Créative",
+      "icon": "🎨",
+      "description": "Peinture, musique, théâtre, photographie, artisanat",
+      "color": "#FF9800"
+    },
+    {
+      "id": 5,
+      "name": "Sport et Aventure",
+      "icon": "🏃‍♂️",
+      "description": "Activités physiques, défis en plein air, sports collectifs",
+      "color": "#E91E63"
+    },
+    {
+      "id": 6,
+      "name": "Vie Pratique et Autonomie",
+      "icon": "🛠️",
+      "description": "Cuisine, bricolage, gestion du budget, premiers secours",
+      "color": "#607D8B"
+    },
+    {
+      "id": 7,
+      "name": "Culture et Société",
+      "icon": "🌍",
+      "description": "Traditions, langues, rencontres intergénérationnelles, citoyenneté",
+      "color": "#9C27B0"
+    },
+    {
+      "id": 8,
+      "name": "Littérature et Imagination",
+      "icon": "📖",
+      "description": "Contes, mythologie, création d'histoires, lecture partagée",
+      "color": "#FFC107"
+    },
+    {
+      "id": 9,
+      "name": "Sorties Ludiques et Sensorielles",
+      "icon": "🎭",
+      "description": "Jeux de piste, escape games, expériences sensorielles",
+      "color": "#00BCD4"
+    },
+    {
+      "id": 10,
+      "name": "Engagement et Solidarité",
+      "icon": "❤️",
+      "description": "Bénévolat, entraide, actions écologiques, échanges",
+      "color": "#F44336"
+    }
+  ]
+}

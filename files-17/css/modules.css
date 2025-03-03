@@ -1,0 +1,618 @@
+/* =========================================
+   DÉTAIL DES ÉVÉNEMENTS
+   ========================================= */
+   .event-details {
+    padding: 0;
+}
+
+.event-details p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+    display: block;
+    width: 100%;
+}
+
+.event-details p i {
+    color: var(--primary);
+    margin-right: 12px;
+    width: 20px;
+    text-align: center;
+    float: left;
+    margin-top: 3px;
+    font-size: 1.1em;
+}
+
+.event-details p strong {
+    margin-right: 5px;
+}
+
+.event-details p strong::after {
+    content: " ";
+}
+
+.description-block {
+    margin-bottom: 16px;
+    width: 100%;
+    clear: both;
+}
+
+#detailsDescription {
+    background-color: var(--light);
+    padding: 15px;
+    border-radius: var(--border-radius-md);
+    font-style: italic;
+    margin-top: 5px;
+    width: 100%;
+    display: block;
+    clear: both;
+    margin-bottom: 16px;
+}
+
+#detailsCreator {
+    margin-top: 24px;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+}
+
+#detailsCreator p {
+    color: var(--gray);
+}
+
+#detailsCreator p strong {
+    color: var(--dark);
+    margin-right: 8px;
+}
+
+.full-width-separator {
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+    height: 0;
+    clear: both;
+}
+
+/* =========================================
+   ÉVÈNEMENTS POUR ENFANTS
+   ========================================= */
+.children-only-notice {
+    background-color: var(--warning-light);
+    color: var(--warning);
+    padding: 12px 16px;
+    border-radius: var(--border-radius-md);
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-left: 4px solid var(--warning);
+    display: block;
+    width: 100%;
+    clear: both;
+    font-weight: 500;
+    box-sizing: border-box;
+}
+
+.children-only-notice i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+/* =========================================
+   LISTE DES ÉVÉNEMENTS
+   ========================================= */
+.events-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.event-card {
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    margin-bottom: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-normal) ease, box-shadow var(--transition-normal) ease;
+}
+
+.event-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.event-card-header {
+    padding: 15px;
+    background-color: var(--light);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-card-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.event-card-content {
+    padding: 15px;
+}
+
+.event-card-info {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+}
+
+.event-card-info i {
+    color: var(--primary);
+    width: 20px;
+    margin-right: 8px;
+}
+
+.event-card-actions {
+    padding: 12px 15px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.event-action-buttons-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    gap: 12px;
+}
+
+#eventActionButtons, #eventOwnerButtons {
+    display: flex;
+    gap: 12px;
+}
+
+.event-registration-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.unregister-icon {
+    color: var(--danger);
+    cursor: pointer;
+    transition: transform var(--transition-normal) ease;
+}
+
+.unregister-icon:hover {
+    transform: scale(1.2);
+}
+
+/* =========================================
+   LISTE DES PARTICIPANTS
+   ========================================= */
+.participants-list-container {
+    background-color: #f9f9fa;
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-md);
+}
+
+.participants-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-md);
+}
+
+.participants-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--dark);
+}
+
+.participants-count {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.participants-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.participant-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background-color: white;
+    border-radius: var(--border-radius-lg);
+    margin-bottom: 0.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
+}
+
+.participant-item:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-md);
+}
+
+.participant-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--border-radius-full);
+    background-color: #e3f2fd;
+    margin-right: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.participant-info {
+    flex-grow: 1;
+}
+
+.participant-name {
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+    color: var(--dark);
+}
+
+.participant-date {
+    font-size: 0.8rem;
+    color: var(--gray);
+}
+
+.no-participants {
+    text-align: center;
+    padding: var(--space-xl) 0;
+    color: var(--gray);
+    font-style: italic;
+}
+
+/* Styles pour les participants enfants */
+.child-avatar {
+    background-color: var(--warning-light);
+    color: var(--warning);
+    border: 1px dashed var(--warning);
+}
+
+.family-group {
+    margin-bottom: var(--space-md);
+    border-left: 2px solid transparent;
+    transition: border-color var(--transition-fast);
+}
+
+.family-group:hover {
+    border-left-color: var(--primary);
+}
+
+.family-header {
+    background-color: var(--light);
+    margin-bottom: 0;
+    border-bottom: 1px dashed #eee;
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+}
+
+.participant-child {
+    padding-left: var(--space-lg);
+    position: relative;
+    margin-top: 1px;
+    margin-left: 20px;
+    border-left: 2px solid var(--light);
+}
+
+.participant-child:before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background-color: #eee;
+}
+
+.parent-child-relation {
+    color: var(--gray);
+    font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    display: inline-block;
+}
+
+
+    .parent-child-relation i {
+        font-size: 0.7rem;
+        margin: 0 3px;
+        color: var(--primary);
+    }
+    
+    .participant-child:hover {
+        transform: translateX(8px);
+    }
+    
+    .family-tag {
+        font-size: 0.75rem;
+        color: var(--gray);
+        font-style: italic;
+    }
+    
+    /* =========================================
+       FORMULAIRE D'INSCRIPTION À UN ÉVÉNEMENT
+       ========================================= */
+    .participants-selection {
+        margin-top: var(--space-lg);
+        margin-bottom: var(--space-lg);
+    }
+    
+    .participant-option {
+        background-color: white;
+        border: 1px solid #eee;
+        border-radius: var(--border-radius-md);
+        padding: var(--space-sm);
+        margin-bottom: var(--space-xs);
+        display: flex;
+        align-items: center;
+        transition: all var(--transition-fast);
+    }
+    
+    .participant-option:hover {
+        background-color: rgba(52, 152, 219, 0.05);
+    }
+    
+    .participant-option label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        flex-grow: 1;
+    }
+    
+    .participant-option input[type="checkbox"] {
+        margin-right: var(--space-sm);
+    }
+    
+    /* Style pour l'option désactivée dans le formulaire */
+    .disabled-option {
+        opacity: 0.6;
+        cursor: not-allowed;
+        position: relative;
+    }
+    
+    .disabled-option:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.1);
+        z-index: 1;
+        pointer-events: none;
+    }
+    
+    .disabled-info {
+        margin-left: 5px;
+        font-size: 0.8rem;
+        color: var(--danger);
+        font-style: italic;
+    }
+    
+    /* =========================================
+       GESTIONNAIRE D'ENFANTS
+       ========================================= */
+    .child-entry {
+        background-color: var(--light);
+        border-radius: var(--border-radius-md);
+        padding: var(--space-md);
+        margin-bottom: var(--space-md);
+        position: relative;
+        transition: opacity 0.3s ease, max-height 0.3s ease, margin-bottom 0.3s ease;
+    }
+    
+    .child-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--space-sm);
+    }
+    
+    .child-header h4 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: var(--dark);
+    }
+    
+    .remove-child {
+        background-color: var(--danger);
+        color: white;
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+        padding: 0;
+    }
+    
+    .child-content {
+        margin-top: var(--space-sm);
+    }
+    
+    .child-content p {
+        margin-bottom: var(--space-xs);
+        font-size: 0.9rem;
+        color: var(--gray);
+        display: flex;
+        align-items: center;
+    }
+    
+    .child-content p i {
+        margin-right: var(--space-sm);
+        color: var(--primary);
+    }
+    
+    /* =========================================
+       SECTION DISCUSSION
+       ========================================= */
+    .discussion-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        max-height: 500px;
+    }
+    
+    .comments-list {
+        flex: 1;
+        overflow-y: auto;
+        margin-bottom: 15px;
+        padding-right: 5px;
+        max-height: 350px;
+    }
+    
+    /* Styles pour les commentaires */
+    .comment {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 12px 15px;
+        margin-bottom: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        transition: all 0.2s ease;
+    }
+    
+    .comment:hover {
+        background-color: #f1f3f5;
+    }
+    
+    .comment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+    
+    .comment-author {
+        font-weight: 600;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .author-avatar {
+        width: 28px;
+        height: 28px;
+        background-color: var(--primary-light);
+        color: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8em;
+        font-weight: 600;
+    }
+    
+    .comment-date {
+        font-size: 0.8em;
+        color: var(--gray);
+    }
+    
+    .comment-content {
+        font-size: 0.95em;
+        line-height: 1.5;
+        word-break: break-word;
+        white-space: pre-line;
+    }
+    
+    .comment-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 8px;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+    
+    .comment:hover .comment-actions {
+        opacity: 1;
+    }
+    
+    .comment-action-btn {
+        background: none;
+        border: none;
+        color: var(--gray);
+        cursor: pointer;
+        font-size: 0.8em;
+        padding: 3px 8px;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+    }
+    
+    .comment-action-btn:hover {
+        color: var(--primary);
+        background-color: var(--light);
+    }
+    
+    .comment-action-btn.delete {
+        color: var(--danger);
+    }
+    
+    .comment-action-btn.delete:hover {
+        background-color: #ffe6e6;
+    }
+    
+    /* Formulaire de commentaire */
+    .comment-form {
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+    }
+    
+    .comment-form textarea {
+        width: 100%;
+        min-height: 80px;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        resize: vertical;
+        font-family: inherit;
+        transition: border-color 0.2s ease;
+    }
+    
+    .comment-form textarea:focus {
+        border-color: var(--primary);
+        outline: none;
+    }
+    
+    .comment-form .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+    }
+    
+    /* Message d'invitation à se connecter */
+    .login-prompt {
+        text-align: center;
+        padding: 15px;
+    }
+    
+    /* État vide */
+    .no-comments {
+        text-align: center;
+        padding: 30px 0;
+        color: var(--gray);
+    }
+    
+    .no-comments i {
+        font-size: 2em;
+        margin-bottom: 10px;
+        opacity: 0.7;
+    }
+    
+    /* Animation pour les nouveaux commentaires */
+    .comment.new {
+        animation: commentFadeIn 0.5s ease;
+    }

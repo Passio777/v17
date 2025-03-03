@@ -1,0 +1,32 @@
+{
+    "comments": [
+        {
+            "id": 1,
+            "eventId": "67c57a886836a8b84e1858bc25da8",
+            "userId": "67c57a48d6ecc757fce0664ea1761",
+            "content": "cc",
+            "createdAt": "2025-03-03 10:13:02"
+        },
+        {
+            "id": 2,
+            "eventId": "67c583d83528654d9abae934d5101",
+            "userId": "67c5836d27f5ceb4b233c05cf0f25",
+            "content": "Coucou, quelqu'un peut-il passer me prendre ce jour là ?",
+            "createdAt": "2025-03-03 10:27:34"
+        },
+        {
+            "id": 3,
+            "eventId": "67c58e95963a230430b042c627077",
+            "userId": "67c57a48d6ecc757fce0664ea1761",
+            "content": "Coucou",
+            "createdAt": "2025-03-03 11:12:54"
+        },
+        {
+            "id": 4,
+            "eventId": "67c58e95963a230430b042c627077",
+            "userId": "67c57a48d6ecc757fce0664ea1761",
+            "content": "Qui peut passer me chercher ?",
+            "createdAt": "2025-03-03 11:13:01"
+        }
+    ]
+}

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Événements pour l'Instruction en Famille</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/form-layout.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="Plateforme de partage d'événements pour les familles pratiquant l'instruction en famille">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Événements pour <span class="header-accent">l'Instruction en Famille</span></h1>
+            <div class="auth-buttons">
+                <button id="loginBtn" class="btn-transparent"><i class="fas fa-sign-in-alt"></i> Connexion</button>
+                <button id="registerBtn" class="btn-transparent"><i class="fas fa-user-plus"></i> Inscription</button>
+                <div id="userInfo" class="hidden">
+                    <div class="user-menu-container">
+                        <button id="userMenuBtn" class="btn-transparent user-menu-btn">
+                            <i class="fas fa-user-circle"></i> <span id="userName"></span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="user-dropdown hidden">
+                            <a href="#" id="profileBtn"><i class="fas fa-id-card"></i> Mon Profil</a>
+                            <a href="#" id="myEventsBtn"><i class="fas fa-calendar-check"></i> Mes Événements</a>
+                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div id="map"></div>
+        
+        <!-- Panneau latéral de filtres -->
+        <div id="filterPanel" class="side-panel">
+            <div class="side-panel-header">
+                <h2>Filtrer les événements</h2>
+                <button id="closeFilterBtn" class="btn-icon"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="side-panel-content">
+                <div class="form-group">
+                    <label for="searchInput">Recherche par mots-clés</label>
+                    <input type="text" id="searchInput" placeholder="Titre, description...">
+                </div>
+                
+                <div class="form-group">
+                    <label>Plage de dates</label>
+                    <div class="date-range-inputs">
+                        <div class="date-input">
+                            <label for="startDateFilter">Du</label>
+                            <input type="date" id="startDateFilter">
+                        </div>
+                        <div class="date-input">
+                            <label for="endDateFilter">Au</label>
+                            <input type="date" id="endDateFilter">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-filter-container">
+                    <h4>Filtrer par catégorie</h4>
+                    <div class="category-filter" id="categoryFilter">
+                        <!-- Les filtres de catégories seront générés ici -->
+                    </div>
+                </div>
+                
+                <div class="toggle-container">
+                    <div class="toggle-label">Événements gratuits uniquement</div>
+                    <label class="switch">
+                        <input type="checkbox" id="freeEventsOnly">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="toggle-container">
+                    <div class="toggle-label">Événements pour enfants uniquement</div>
+                    <label class="switch">
+                        <input type="checkbox" id="childrenEventsOnly">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="toggle-container">
+                    <div class="toggle-label">Masquer les événements complets</div>
+                    <label class="switch">
+                        <input type="checkbox" id="hideFullEvents">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="filter-actions">
+                    <button id="applyFilters" class="btn-primary">Appliquer les filtres</button>
+                    <button id="resetFilters" class="btn-secondary">Réinitialiser</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Boutons flottants -->
+        <div class="floating-buttons">
+            <button id="filterBtn" class="floating-button" title="Filtrer les événements">
+                <i class="fas fa-filter"></i>
+            </button>
+            <button id="addEventBtn" class="floating-button" title="Créer un événement">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </main>
+
+    <!-- Loader pleine page -->
+    <div id="page-loader" class="hidden">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">Chargement en cours...</div>
+    </div>
+
+    <!-- Modal pour se connecter -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="loginModal">&times;</span>
+            <h2>Connexion</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Mot de passe</label>
+                    <div class="password-input-container">
+                        <input type="password" id="loginPassword" required>
+                        <button type="button" class="toggle-password-btn" data-target="loginPassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Se connecter</button>
+                <div class="form-footer">
+                    <p>Pas encore de compte ? <a href="#" id="switchToRegister">S'inscrire</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal pour s'inscrire -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="registerModal">&times;</span>
+            <h2>Inscription</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="firstname">Prénom</label>
+                    <input type="text" id="firstname" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Nom</label>
+                    <input type="text" id="lastname" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <div class="password-input-container">
+                        <input type="password" id="password" required>
+                        <button type="button" class="toggle-password-btn" data-target="password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="password-strength">
+                        <div class="strength-meter"></div>
+                        <span class="strength-text"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Avez-vous des enfants ?</label>
+                    <div id="childrenContainer"></div>
+                    <button type="button" id="addChildBtn" class="btn-secondary btn-sm">
+                        <i class="fas fa-plus-circle"></i> Ajouter un enfant
+                    </button>
+                </div>
+                <button type="submit" class="btn-primary">S'inscrire</button>
+                <div class="form-footer">
+                    <p>Déjà inscrit ? <a href="#" id="switchToLogin">Se connecter</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal pour le profil utilisateur -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="profileModal">&times;</span>
+            <h2>Mon Profil</h2>
+            <form id="profileForm">
+                <div class="form-group">
+                    <label for="profileFirstname">Prénom</label>
+                    <input type="text" id="profileFirstname" required>
+                </div>
+                <div class="form-group">
+                    <label for="profileLastname">Nom</label>
+                    <input type="text" id="profileLastname" required>
+                </div>
+                <div class="form-group">
+                    <label for="profileEmail">Email</label>
+                    <input type="email" id="profileEmail" readonly>
+                </div>
+                <div class="profile-section">
+                    <h3>Mes enfants</h3>
+                    <div id="profileChildrenList"></div>
+                    <button type="button" id="profileAddChildBtn" class="btn-secondary btn-sm">
+                        <i class="fas fa-plus-circle"></i> Ajouter un enfant
+                    </button>
+                </div>
+                <div class="profile-section">
+                    <h3>Changer de mot de passe</h3>
+                    <div class="form-group">
+                        <label for="currentPassword">Mot de passe actuel</label>
+                        <div class="password-input-container">
+                            <input type="password" id="currentPassword">
+                            <button type="button" class="toggle-password-btn" data-target="currentPassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">Nouveau mot de passe</label>
+                        <div class="password-input-container">
+                            <input type="password" id="newPassword">
+                            <button type="button" class="toggle-password-btn" data-target="newPassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Enregistrer les modifications</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal pour ajouter un enfant depuis le profil -->
+    <div id="addChildModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="addChildModal">&times;</span>
+            <h2>Ajouter un enfant</h2>
+            <form id="addChildForm">
+                <div class="form-group">
+                    <label for="childFirstname">Prénom</label>
+                    <input type="text" id="childFirstname" required>
+                </div>
+                <div class="form-group">
+                    <label for="childBirthdate">Date de naissance</label>
+                    <input type="date" id="childBirthdate" required>
+                </div>
+                <button type="submit" class="btn-primary">Ajouter</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal pour mes événements -->
+    <div id="myEventsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="myEventsModal">&times;</span>
+            <h2>Mes Événements</h2>
+            <div class="modal-tabs">
+                <button class="tab-btn active" data-tab="created-events-tab">Créés par moi</button>
+                <button class="tab-btn" data-tab="registered-events-tab">Mes inscriptions</button>
+            </div>
+            <div id="created-events-tab" class="tab-content active">
+                <div id="createdEventsList" class="events-list">
+                    <div class="loading-indicator">Chargement des événements...</div>
+                </div>
+            </div>
+            <div id="registered-events-tab" class="tab-content">
+                <div id="registeredEventsList" class="events-list">
+                    <div class="loading-indicator">Chargement des événements...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour ajouter un événement (NOUVELLE VERSION À 2 COLONNES) -->
+    <div id="addEventModal" class="modal">
+        <div class="modal-content modal-wide">
+            <span class="close" data-modal="addEventModal">&times;</span>
+            <h2>Créer un événement</h2>
+            <form id="addEventForm" class="two-column-form">
+                <!-- Colonne gauche -->
+                <div class="form-column left-column">
+                    <!-- Section Catégorie -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-tag"></i> Catégorie</h3>
+                        <div class="categories-container">
+                            <div class="categories-grid" id="categoryGrid">
+                                <!-- Les catégories seront générées dynamiquement ici -->
+                            </div>
+                            <div class="category-description-container">
+                                <p class="category-description-text" id="categoryDescription">Sélectionnez une catégorie pour voir sa description.</p>
+                            </div>
+                            <input type="hidden" id="selectedCategoryId" name="categoryId" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Section Localisation -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-map-marker-alt"></i> Localisation</h3>
+                        <div class="form-group">
+                            <label for="eventLocation">Adresse de l'événement</label>
+                            <div class="location-search-container">
+                                <input type="text" id="eventLocation" name="location" placeholder="Entrez une adresse" autocomplete="off" required>
+                                <button type="button" id="locateBtn" class="btn-icon"><i class="fas fa-crosshairs"></i></button>
+                            </div>
+                            <div id="addressSuggestions" class="address-suggestions hidden"></div>
+                        </div>
+                        <div id="locationMap" class="mini-map"></div>
+                        <input type="hidden" id="eventLat" name="lat">
+                        <input type="hidden" id="eventLng" name="lng">
+                        <p class="hint-text"><i class="fas fa-info-circle"></i> Cliquez sur la carte pour définir l'emplacement</p>
+                    </div>
+                </div>
+                
+                <!-- Colonne droite -->
+                <div class="form-column right-column">
+                    <!-- Informations générales -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-info-circle"></i> Informations générales</h3>
+                        <div class="form-group">
+                            <label for="eventTitle">Titre</label>
+                            <input type="text" id="eventTitle" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="eventDescription">Description</label>
+                            <textarea id="eventDescription" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Date et heure -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-calendar-alt"></i> Date et heure</h3>
+                        <div class="form-group">
+                            <label for="eventStartDate">Date de début</label>
+                            <input type="datetime-local" id="eventStartDate" required>
+                        </div>
+                        
+                        <div class="toggle-container">
+                            <div class="toggle-label">Préciser une date de fin</div>
+                            <label class="switch">
+                                <input type="checkbox" id="hasEndDate">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div id="endDateGroup" class="dynamic-field">
+                            <div class="form-group">
+                                <label for="eventEndDate">Date de fin</label>
+                                <input type="datetime-local" id="eventEndDate">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Options de l'événement -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-cog"></i> Options</h3>
+                        <div class="toggle-container">
+                            <div class="toggle-label">Places limitées</div>
+                            <label class="switch">
+                                <input type="checkbox" id="isLimited" name="isLimited">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div id="placesGroup" class="dynamic-field">
+                            <div class="modern-input-container">
+                                <div class="label-with-value">
+                                    <label for="placesRange">Nombre de places</label>
+                                    <span id="placesValue" class="value-display">10</span>
+                                </div>
+                                <div class="range-with-input">
+                                    <input type="range" id="placesRange" min="1" max="100" step="1" value="10">
+                                    <input type="number" id="eventPlaces" min="1" step="1" value="10">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="toggle-container">
+                            <div class="toggle-label">Événement payant</div>
+                            <label class="switch">
+                                <input type="checkbox" id="isPaid" name="isPaid">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div id="priceGroup" class="dynamic-field">
+                            <div class="modern-input-container">
+                                <div class="label-with-value">
+                                    <label for="priceRange">Prix</label>
+                                    <span id="priceValue" class="value-display">0 €</span>
+                                </div>
+                                <div class="range-with-input">
+                                    <input type="range" id="priceRange" min="0" max="100" step="0.5" value="0">
+                                    <input type="number" id="eventPrice" min="0" step="0.5" value="0">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="toggle-container">
+                            <div class="toggle-label">Réservé aux enfants
+                                <span class="info-tooltip" title="Si cette option est activée, seuls les enfants pourront être inscrits à cet événement.">
+                                    <i class="fas fa-info-circle"></i>
+                                </span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="isChildrenOnly" name="isChildrenOnly">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary"><i class="fas fa-plus-circle"></i> Créer l'événement</button>
+                        <button type="button" class="btn-secondary" id="cancelEventBtn">Annuler</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal détails de l'événement -->
+    <div id="eventDetailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="eventDetailsModal">&times;</span>
+            <!-- Remplacer la balise h2 existante par une div -->
+            <div class="event-title-container">
+                <h2 id="detailsTitle">Détails de l'événement</h2>
+            </div>
+        
+            <div class="modal-tabs">
+                <button class="tab-btn active" data-tab="details-tab">
+                    <i class="fas fa-info-circle"></i> Informations
+                </button>
+                <button class="tab-btn" data-tab="participants-tab">
+                    <i class="fas fa-users"></i> Participants <span id="participantsCount" class="badge">0</span>
+                </button>
+                <button class="tab-btn" data-tab="discussion-tab">
+                    <i class="fas fa-comments"></i> Discussion <span id="commentsCount" class="badge">0</span>
+                </button>
+            </div>
+            
+            <div id="details-tab" class="tab-content active">
+                <div class="event-details">
+                    <p>
+                        <i class="fas fa-calendar"></i>
+                        <strong>Date :</strong>
+                        <span id="detailsDate"></span>
+                    </p>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <strong>Lieu :</strong>
+                        <span id="detailsLocation"></span>
+                    </p>
+                    <p id="detailsPrice">
+                        <i class="fas fa-tag"></i>
+                        <strong>Prix :</strong>
+                        <span id="detailsPriceValue" class="price-free">Gratuit</span>
+                    </p>
+                    <p id="detailsPlaces">
+                        <i class="fas fa-users"></i>
+                        <strong>Places disponibles :</strong>
+                        <span id="detailsPlacesValue" class="places-badge places-available">Illimité</span>
+                    </p>
+                    <div class="description-block">
+                        <p>
+                            <i class="fas fa-align-left"></i>
+                            <strong>Description :</strong>
+                        </p>
+                        <div id="detailsDescription"></div>
+                    </div>
+                    
+                    <!-- Notice pour enfants sur sa propre ligne -->
+                    <div id="detailsChildrenOnly" class="children-only-notice">
+                        <i class="fas fa-child"></i>
+                        Inscription réservée aux enfants
+                    </div>
+                    
+                    <div id="detailsCreator">
+                        <p>
+                            <strong>Créé par :</strong>
+                            <span id="detailsCreatorName"></span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="event-action-buttons-row">
+                    <div id="eventActionButtons">
+                        <button id="registerEventBtn" class="event-action-btn register-event" data-id="">
+                            <i class="fas fa-user-plus"></i> S'inscrire
+                        </button>
+                    </div>
+                    
+                    <div id="eventOwnerButtons" class="hidden">
+                        <button id="editEventBtn" class="event-action-btn" data-id="">
+                            <i class="fas fa-edit"></i> Modifier
+                        </button>
+                        <button id="deleteEventBtn" class="event-action-btn" data-id="">
+                            <i class="fas fa-trash-alt"></i> Supprimer
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="eventRegistrationForm" class="hidden">
+                    <h3>Qui souhaitez-vous inscrire ?</h3>
+                    
+                    <div class="participants-selection">
+                        <div class="participant-option" id="selfRegistrationOption">
+                            <label>
+                                <input type="checkbox" id="registerSelf" checked>
+                                <span>Moi-même</span>
+                            </label>
+                        </div>
+                        
+                        <h4>Mes enfants</h4>
+                        <div id="childrenOptions">
+                            <!-- Les options des enfants seront générées dynamiquement ici -->
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button id="confirmRegistrationBtn" class="btn-primary">
+                            <i class="fas fa-check"></i> Confirmer
+                        </button>
+                        <button id="cancelRegistrationBtn" class="btn-secondary">
+                            <i class="fas fa-times"></i> Annuler
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="participants-tab" class="tab-content">
+                <div class="participants-list-container">
+                    <div class="participants-header">
+                        <h3>Liste des participants</h3>
+                    </div>
+                    <div id="participantsList" class="participants-list">
+                        <!-- La liste des participants sera chargée dynamiquement ici -->
+                    </div>
+                </div>
+            </div>
+            
+            <div id="discussion-tab" class="tab-content">
+                <div class="discussion-container">
+                    <div id="commentsList" class="comments-list">
+                        <!-- Les commentaires seront chargés dynamiquement ici -->
+                        <div class="loading-indicator"><i class="fas fa-circle-notch fa-spin"></i> Chargement des commentaires...</div>
+                    </div>
+                    <div class="comment-form">
+                        <div id="commentFormPlaceholder" class="login-prompt hidden">
+                            <p>Connectez-vous pour participer à la discussion</p>
+                            <button class="btn-secondary" id="loginToComment">Se connecter</button>
+                        </div>
+                        <form id="addCommentForm" class="hidden">
+                            <div class="form-group">
+                                <textarea id="commentContent" placeholder="Écrivez votre commentaire ici..." required></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-paper-plane"></i> Publier
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmation -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content modal-sm">
+            <h2 id="confirmTitle">Confirmation</h2>
+            <p id="confirmMessage">Êtes-vous sûr de vouloir effectuer cette action ?</p>
+            <div class="form-buttons">
+                <button id="confirmYesBtn" class="btn-danger">Oui</button>
+                <button id="confirmNoBtn" class="btn-secondary">Non</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div id="notification-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/create-event.js"></script>
+</body>
+</html>

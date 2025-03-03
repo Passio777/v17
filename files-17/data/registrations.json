@@ -1,0 +1,58 @@
+[
+    {
+        "id": "67c57ea406d6e59ab15770e0907aa",
+        "eventId": "67c57d7dcc9f0273370a60ca7f994",
+        "userId": "67c57a48d6ecc757fce0664ea1761",
+        "participantId": "67c57a48d6ea540825222b0412100",
+        "participantType": "child",
+        "registeredAt": "2025-03-03 10:04:20"
+    },
+    {
+        "id": "67c580b5c671d98faf49c1de8be90",
+        "eventId": "67c57a886836a8b84e1858bc25da8",
+        "userId": "67c57a48d6ecc757fce0664ea1761",
+        "participantId": "67c57a48d6ecc757fce0664ea1761",
+        "participantType": "adult",
+        "registeredAt": "2025-03-03 10:13:09"
+    },
+    {
+        "id": "67c580b5c675f7cf375b5fa4b111a",
+        "eventId": "67c57a886836a8b84e1858bc25da8",
+        "userId": "67c57a48d6ecc757fce0664ea1761",
+        "participantId": "67c57a48d6ea540825222b0412100",
+        "participantType": "child",
+        "registeredAt": "2025-03-03 10:13:09"
+    },
+    {
+        "id": "67c583ffdf405b4c9f8a38d061ecf",
+        "eventId": "67c583d83528654d9abae934d5101",
+        "userId": "67c5836d27f5ceb4b233c05cf0f25",
+        "participantId": "67c5836d27f5b7d815c294704abe5",
+        "participantType": "child",
+        "registeredAt": "2025-03-03 10:27:11"
+    },
+    {
+        "id": "67c58dc5a8f4911fd2a10cf530a39",
+        "eventId": "67c58d80c05e4c9b8343ac122118b",
+        "userId": "67c57a48d6ecc757fce0664ea1761",
+        "participantId": "67c57a48d6ea540825222b0412100",
+        "participantType": "child",
+        "registeredAt": "2025-03-03 11:08:53"
+    },
+    {
+        "id": "67c58ea5988f87ea75a62ada0b0fc",
+        "eventId": "67c58e95963a230430b042c627077",
+        "userId": "67c57a48d6ecc757fce0664ea1761",
+        "participantId": "67c57a48d6ea540825222b0412100",
+        "participantType": "child",
+        "registeredAt": "2025-03-03 11:12:37"
+    },
+    {
+        "id": "67c58eabbd770a87bb41684e7ddf6",
+        "eventId": "67c58e95963a230430b042c627077",
+        "userId": "67c57a48d6ecc757fce0664ea1761",
+        "participantId": "67c58ddf78c7888084eb5409c3ed9",
+        "participantType": "child",
+        "registeredAt": "2025-03-03 11:12:43"
+    }
+]

@@ -1,0 +1,700 @@
+/* =========================================
+   BOUTONS
+   ========================================= */
+/* Styles communs à tous les boutons */
+.btn-primary, 
+.btn-secondary,
+.btn-danger {
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all var(--transition-normal) ease;
+}
+
+/* Bouton primaire */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Bouton secondaire */
+.btn-secondary {
+    background-color: var(--secondary);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-dark);
+}
+
+/* Bouton danger */
+.btn-danger {
+    background-color: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+/* Bouton transparent */
+.btn-transparent {
+    background-color: transparent;
+    color: var(--dark);
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+    transition: all var(--transition-fast);
+}
+
+.btn-transparent:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+    color: var(--primary);
+}
+
+/* Boutons flottants */
+.floating-buttons {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: var(--z-float);
+}
+
+.floating-button {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--border-radius-full);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    border: none;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    cursor: pointer;
+    transition: all var(--transition-normal) ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.floating-button:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.floating-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.4s, opacity 0.3s;
+}
+
+.floating-button:active::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition: 0s;
+}
+
+/* Bouton d'icône */
+.btn-icon {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.btn-icon:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Variante petite pour les boutons */
+.btn-sm {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+}
+
+/* Actions dans les popups */
+.event-action-btn {
+    background-color: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 8px 12px;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+}
+
+.event-action-btn:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.event-action-btn.register-event {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+}
+
+.event-action-btn.register-event:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Boutons d'action pour les événements */
+#eventActionButtons {
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+#eventOwnerButtons {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+/* Animations pour les boutons */
+@media (prefers-reduced-motion: no-preference) {
+    .btn-primary:active, 
+    .floating-button:active,
+    .event-action-btn:active {
+        transform: scale(0.95);
+    }
+    
+    .btn-icon:active {
+        transform: scale(0.9);
+    }
+    
+    .registering-animation {
+        animation: pulse 1.2s infinite;
+        background-color: rgba(46, 204, 113, 0.1);
+        border-radius: 8px;
+    }
+    
+    .registration-success {
+        animation: success-glow 1s ease-out;
+        border-color: var(--success) !important;
+    }
+}
+
+/* =========================================
+   FORMULAIRES
+   ========================================= */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--dark);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius-md);
+    font-size: 1rem;
+    background-color: var(--light);
+    transition: all var(--transition-normal) ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    background-color: white;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+.hint-text {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+/* Boutons du formulaire */
+.form-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Conteneur de recherche d'adresse */
+.location-search-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.location-search-container input {
+    flex-grow: 1;
+}
+
+.address-suggestions {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius-md);
+    margin-top: 5px;
+    background-color: white;
+    box-shadow: var(--shadow-sm);
+    z-index: 10;
+    position: relative;
+}
+
+.address-suggestion {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border);
+    transition: background-color var(--transition-fast);
+}
+
+.address-suggestion:hover {
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+.address-suggestion:last-child {
+    border-bottom: none;
+}
+
+.end-date-toggle {
+    margin-top: -0.5rem;
+}
+
+/* Toggle switches */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    justify-content: space-between;
+}
+
+.toggle-label {
+    font-weight: 500;
+    flex-grow: 1;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 26px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .3s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--primary);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--primary);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Champs dynamiques */
+.dynamic-field {
+    max-height: 0;
+    overflow: hidden;
+    transition: all var(--transition-normal) ease-out;
+    opacity: 0;
+    margin-bottom: 0;
+}
+
+.dynamic-field.shown {
+    max-height: 100px;
+    opacity: 1;
+    margin-bottom: 1.25rem;
+}
+
+/* =========================================
+   INPUT PASSWORD
+   ========================================= */
+.password-input-container {
+    position: relative;
+}
+
+.toggle-password-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--gray);
+    cursor: pointer;
+}
+
+.toggle-password-btn:hover {
+    color: var(--dark);
+}
+
+.password-strength {
+    margin-top: 8px;
+}
+
+.strength-meter {
+    height: 5px;
+    background-color: #ddd;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.strength-meter::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.strength-meter.weak::before {
+    width: 33%;
+    background-color: var(--danger);
+}
+
+.strength-meter.medium::before {
+    width: 66%;
+    background-color: var(--warning);
+}
+
+.strength-meter.strong::before {
+    width: 100%;
+    background-color: var(--success);
+}
+
+.strength-text {
+    font-size: 0.8rem;
+}
+
+.strength-text.weak {
+    color: var(--danger);
+}
+
+.strength-text.medium {
+    color: var(--warning);
+}
+
+.strength-text.strong {
+    color: var(--success);
+}
+
+/* =========================================
+   PRIX ET BADGES
+   ========================================= */
+/* Badges de prix */
+.price-free, .price-paid {
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: var(--border-radius-md);
+    margin-left: 8px;
+}
+
+.price-free {
+    color: var(--success);
+    background-color: var(--success-light);
+}
+
+.price-paid {
+    color: var(--primary-dark);
+    background-color: var(--primary-light);
+}
+
+/* Badges de places */
+.places-badge {
+    padding: 3px 8px;
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+    display: inline-block;
+    margin-left: 8px;
+}
+
+.places-available {
+    background-color: var(--success-light);
+    color: var(--success);
+}
+
+.places-limited {
+    background-color: var(--warning-light);
+    color: var(--warning);
+}
+
+.places-full {
+    background-color: var(--danger-light);
+    color: var(--danger);
+}
+
+/* Sections de prix et places dans les détails */
+#detailsPrice, #detailsPlaces {
+    margin-bottom: 16px;
+    padding: 10px 15px;
+    border-radius: var(--border-radius-md);
+    background-color: var(--light);
+    display: block;
+}
+
+#detailsPrice p, #detailsPlaces p {
+    margin-bottom: 0;
+    align-items: center;
+}
+
+#detailsPrice strong, 
+#detailsPlaces strong {
+    margin-right: 8px;
+}
+
+/* Style pour événement complet */
+.event-full {
+    background-color: var(--danger-light);
+    color: var(--danger);
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: var(--border-radius-md);
+    margin-left: 8px;
+}
+
+/* Badge général */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 6px;
+    font-size: 0.75em;
+    font-weight: 600;
+    color: white;
+    background-color: var(--primary);
+    border-radius: 10px;
+    min-width: 18px;
+}
+
+/* =========================================
+   ENTRÉES AVEC CURSEURS
+   ========================================= */
+.modern-input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.modern-input-container label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modern-input-container .label-with-value {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.modern-input-container .value-display {
+    font-weight: 600;
+    color: var(--primary);
+    background-color: var(--light);
+    padding: 2px 8px;
+    border-radius: 4px;
+    min-width: 60px;
+    text-align: center;
+}
+
+.range-with-input {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.range-with-input input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 8px;
+    border-radius: 5px;
+    background: #e0e0e0;
+    outline: none;
+    transition: background 0.2s;
+}
+
+.range-with-input input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.range-with-input input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+.range-with-input input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.range-with-input input[type="range"]::-moz-range-thumb:hover {
+    transform: scale(1.2);
+}
+
+.range-with-input input[type="number"] {
+    width: 80px;
+    text-align: center;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    padding: 8px 12px;
+}
+
+.range-value-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: var(--gray);
+}
+
+/* =========================================
+   INFO-BULLES
+   ========================================= */
+.info-tooltip {
+    position: relative;
+    display: inline-block;
+    margin-left: 5px;
+    color: var(--primary);
+    cursor: help;
+}
+
+.info-tooltip::before {
+    content: attr(title);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    padding: 8px;
+    border-radius: var(--border-radius-md);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-normal) ease;
+    pointer-events: none;
+    z-index: 1010;
+}
+
+.info-tooltip:hover::before {
+    opacity: 1;
+    visibility: visible;
+}

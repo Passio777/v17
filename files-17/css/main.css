@@ -1,0 +1,8 @@
+/* Importation des fichiers CSS modulaires */
+@import 'base.css';
+@import 'layout.css';
+@import 'components.css';
+@import 'modules.css';
+@import 'markers.css';
+@import 'categories.css';
+@import 'form-layout.css';
