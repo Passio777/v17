@@ -160,5 +160,23 @@
         "createdBy": "67c57a48d6ecc757fce0664ea1761",
         "createdAt": "2025-03-03 11:12:21",
         "categoryId": 5
+    },
+    {
+        "id": "67c5e7f953567dfc12072c0be4f29",
+        "title": "Carnaval",
+        "startDate": "2025-03-03T19:33",
+        "endDate": null,
+        "description": "venez tous",
+        "location": "31a, Via San Polo, Spazzavento, Scandicci, Firenze, Toscane, 50018, Italie",
+        "lat": 43.71950494269109,
+        "lng": 11.162109375,
+        "isPaid": true,
+        "price": 3,
+        "isLimited": true,
+        "places": 14,
+        "isChildrenOnly": true,
+        "createdBy": "67c5836d27f5ceb4b233c05cf0f25",
+        "createdAt": "2025-03-03 17:33:45",
+        "categoryId": 1
     }
 ]

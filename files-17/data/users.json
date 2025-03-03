@@ -43,6 +43,34 @@
                 "birthdate": "2018-05-20"
             }
         ],
-        "createdAt": "2025-03-03 10:24:45"
+        "createdAt": "2025-03-03 10:24:45",
+        "lastLogin": "2025-03-03 17:33:16"
+    },
+    {
+        "id": "67c5ddb20e08fe89b60e267611310",
+        "firstname": "xxx",
+        "lastname": "xxx",
+        "email": "x@gmail.com",
+        "password": "$2y$12$567X37ydfj69xcL9K65rtek2GJCl0BBshw244V46Jw869wnrEef5K",
+        "pepper": "f65af616edd2aaedc1d12621572141b3",
+        "role": "user",
+        "children": [
+            {
+                "id": "67c5ddb20e081ee2155cb7a5808b6",
+                "firstname": "Pierre",
+                "birthdate": "2014-02-01"
+            },
+            {
+                "id": "67c5ddb20e08e8dcc612d0b6e8f5f",
+                "firstname": "Maxence",
+                "birthdate": "2023-02-01"
+            },
+            {
+                "id": "67c5ddc0ebde9e7ae54e1f14431c0",
+                "firstname": "luc",
+                "birthdate": "2021-12-21"
+            }
+        ],
+        "createdAt": "2025-03-03 16:49:54"
     }
 ]

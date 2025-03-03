@@ -1,218 +1,159 @@
 /* =========================================
-   CATÉGORIES ET FILTRES
+   FILTRE PAR CATÉGORIES AMÉLIORÉ
    ========================================= */
-   .category-selector-container {
-    margin-bottom: 15px;
-    border-radius: 10px;
-    overflow: hidden;
-}
 
-.category-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.category-item.selected {
-    border-color: #fff;
-    transform: scale(1.03);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-}
-
-.category-item:hover .category-description {
-    display: block;
-}
-
-.selected-category-display {
-    margin-top: 10px;
-    padding: 10px 15px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
-    min-height: 50px;
-}
-
-.selected-category-display .category-icon {
-    margin-right: 10px;
-    margin-bottom: 0;
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-}
-
-.loading-categories {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 20px;
-}
-
-/* Filtres de catégories */
+/* Conteneur principal des filtres */
 .category-filter-container {
-    background: rgba(255, 255, 255, 0.1);
+    background: #f8f9fa;
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 8px;
+    border: 1px solid #eaecef;
 }
 
+.category-filter-container h4 {
+    margin-bottom: 12px;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+/* Grille de filtres de catégories */
 .category-filter {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
     margin-top: 10px;
 }
 
-/* Style amélioré pour les puces de catégories */
+/* Style amélioré pour les boutons de catégories */
 .category-filter-item {
     display: flex;
     align-items: center;
-    padding: 5px 10px;
-    border-radius: 20px;
+    padding: 7px 10px; /* Taille légèrement réduite */
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 0.85rem;
-    transition: all 0.2s;
-    opacity: 0.7;
+    font-size: 0.85rem; /* Police plus petite */
+    transition: all 0.2s ease;
+    opacity: 0.5; /* Transparence accrue par défaut */
     border: 2px solid transparent;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Catégorie "Toutes les catégories" avec un style distinct */
+.category-filter-item[data-id="all"] {
+    background-color: #6c757d;
+    grid-column: 1 / -1;
+}
+
+/* Styles spécifiques pour chaque catégorie basée sur sa couleur */
+.category-filter-item[data-id="1"] { background-color: #4CAF50; } /* Nature et Environnement */
+.category-filter-item[data-id="2"] { background-color: #2196F3; } /* Sciences et Techniques */
+.category-filter-item[data-id="3"] { background-color: #795548; } /* Histoire et Patrimoine */
+.category-filter-item[data-id="4"] { background-color: #FF9800; } /* Arts et Expression Créative */
+.category-filter-item[data-id="5"] { background-color: #E91E63; } /* Sport et Aventure */
+.category-filter-item[data-id="6"] { background-color: #607D8B; } /* Vie Pratique et Autonomie */
+.category-filter-item[data-id="7"] { background-color: #9C27B0; } /* Culture et Société */
+.category-filter-item[data-id="8"] { background-color: #FFC107; color: #333; } /* Littérature et Imagination */
+.category-filter-item[data-id="9"] { background-color: #00BCD4; } /* Sorties Ludiques et Sensorielles */
+.category-filter-item[data-id="10"] { background-color: #F44336; } /* Engagement et Solidarité */
+
+/* Hover et focus sur les catégories */
 .category-filter-item:hover {
-    opacity: 1;
+    opacity: 0.8; /* Plus transparent au survol */
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Style pour les catégories sélectionnées */
-.category-filter-item.active {
-    opacity: 1;
-    border-color: #FFFFFF;
-    background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-}
 
+
+/* Affichage de l'icône et du nom dans le bouton */
 .category-filter-item span {
-    margin-right: 5px;
+    margin-right: 8px;
+    font-size: 1em; /* Taille d'icône légèrement réduite */
 }
 
-.category-filter-item .category-name {
-    margin-left: 5px;
-}
-
-/* Animation pour la sélection */
-.category-filter-item {
-    position: relative;
-    overflow: hidden;
-}
-
-.category-filter-item::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 5px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.5);
-    opacity: 0;
-    border-radius: 100%;
-    transform: scale(1, 1) translate(-50%, -50%);
-    transform-origin: 50% 50%;
-}
-
-.category-filter-item:focus:not(:active)::after {
-    animation: ripple 0.5s ease-out;
-}
-
-@keyframes ripple {
-    0% {
-        transform: scale(0, 0);
-        opacity: 0.5;
-    }
-    100% {
-        transform: scale(25, 25);
-        opacity: 0;
-    }
-}
-
-/* Badges de catégories sélectionnées */
+/* Sélecteur de catégories actives */
 .selected-categories-container {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin: 10px 0;
+    margin: 15px 0 10px;
 }
 
+/* Style des badges pour les catégories sélectionnées */
 .selected-category-badge {
     display: inline-flex;
     align-items: center;
-    padding: 3px 10px;
-    border-radius: 16px;
+    padding: 4px 10px; /* Taille légèrement réduite */
+    border-radius: 20px;
     color: white;
-    background-color: rgba(255, 255, 255, 0.2);
-    margin-right: 5px;
-    margin-bottom: 5px;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 0.85rem; /* Police plus petite */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    margin: 3px;
+    transition: all 0.2s ease;
 }
 
+/* Styles pour chaque badge de catégorie sélectionnée */
+.selected-category-badge[data-id="1"] { background-color: #4CAF50; }
+.selected-category-badge[data-id="2"] { background-color: #2196F3; }
+.selected-category-badge[data-id="3"] { background-color: #795548; }
+.selected-category-badge[data-id="4"] { background-color: #FF9800; }
+.selected-category-badge[data-id="5"] { background-color: #E91E63; }
+.selected-category-badge[data-id="6"] { background-color: #607D8B; }
+.selected-category-badge[data-id="7"] { background-color: #9C27B0; }
+.selected-category-badge[data-id="8"] { background-color: #FFC107; color: #333; }
+.selected-category-badge[data-id="9"] { background-color: #00BCD4; }
+.selected-category-badge[data-id="10"] { background-color: #F44336; }
+
 .selected-category-badge .category-icon {
+    margin-right: 8px;
+    font-size: 1em; /* Taille d'icône légèrement réduite */
+}
+
+.selected-category-badge .category-name {
     margin-right: 5px;
 }
 
 .selected-category-badge .remove-category {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-left: 5px;
     cursor: pointer;
-    opacity: 0.7;
-    transition: opacity 0.2s;
+    width: 16px; /* Taille légèrement réduite */
+    height: 16px; /* Taille légèrement réduite */
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: all 0.2s ease;
 }
 
 .selected-category-badge .remove-category:hover {
-    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
 }
 
-/* Badges de catégories */
-.event-category {
-    display: inline-flex;
-    align-items: center;
-    padding: 3px 8px;
-    border-radius: 15px;
-    margin: 5px 0;
-    color: white;
-    font-size: 12px;
-}
-
-.event-category span {
-    margin-right: 5px;
-}
-
-.event-category-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 5px 12px;
-    border-radius: 20px;
-    color: white;
-    margin: 8px 0;
-}
-
-.event-category-badge .category-icon {
-    margin-right: 8px;
-    font-size: 18px;
-}
-
-.event-category-badge .category-name {
-    font-weight: 500;
-}
-
-/* Responsive */
+/* Adaptation pour les écrans mobiles */
 @media (max-width: 768px) {
-    .category-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    }
-    
     .category-filter {
-        gap: 5px;
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
     }
     
     .category-filter-item {
         font-size: 0.8rem;
-        padding: 4px 8px;
+        padding: 6px 8px;
+    }
+    
+    .selected-category-badge {
+        padding: 3px 8px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-filter {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
     }
 }

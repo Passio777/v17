@@ -54,5 +54,21 @@
         "participantId": "67c58ddf78c7888084eb5409c3ed9",
         "participantType": "child",
         "registeredAt": "2025-03-03 11:12:43"
+    },
+    {
+        "id": "67c5e80d914a08ff4eb476af87ab1",
+        "eventId": "67c5e7f953567dfc12072c0be4f29",
+        "userId": "67c5836d27f5ceb4b233c05cf0f25",
+        "participantId": "67c5836d27f5398826bb41b0d29f7",
+        "participantType": "child",
+        "registeredAt": "2025-03-03 17:34:05"
+    },
+    {
+        "id": "67c5e80d914adb6dea85ed60f1ef9",
+        "eventId": "67c5e7f953567dfc12072c0be4f29",
+        "userId": "67c5836d27f5ceb4b233c05cf0f25",
+        "participantId": "67c5836d27f5b7d815c294704abe5",
+        "participantType": "child",
+        "registeredAt": "2025-03-03 17:34:05"
     }
 ]

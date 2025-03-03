@@ -733,11 +733,12 @@ function closeAllModals() {
 
 // Référence à la fonction de notification qui sera définie dans app.js
 function showNotification(message, type) {
-    // Si la fonction n'est pas encore définie dans app.js, utiliser un fallback
-    if (typeof window.showNotification === 'function') {
-        window.showNotification(message, type);
-    } else {
-        // Fallback simple
+    // Simple fallback quand window.showNotification n'est pas encore disponible
+    if (typeof window.showNotification !== 'function' || window.showNotification === showNotification) {
+        // Éviter la récursion infinie en vérifiant si window.showNotification est cette même fonction
         alert(message);
+    } else {
+        // Appeler la version globale seulement si elle existe et n'est pas cette même fonction
+        window.showNotification(message, type);
     }
 }

@@ -38,72 +38,71 @@
     <main>
         <div id="map"></div>
         
-        <!-- Panneau latéral de filtres -->
-        <div id="filterPanel" class="side-panel">
-            <div class="side-panel-header">
-                <h2>Filtrer les événements</h2>
-                <button id="closeFilterBtn" class="btn-icon"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="side-panel-content">
-                <div class="form-group">
-                    <label for="searchInput">Recherche par mots-clés</label>
-                    <input type="text" id="searchInput" placeholder="Titre, description...">
+            <!-- Panneau latéral de filtres -->
+            <div id="filterPanel" class="side-panel">
+                <div class="side-panel-header">
+                    <h2>Filtrer les événements</h2>
+                    <button id="closeFilterBtn" class="btn-icon"><i class="fas fa-times"></i></button>
                 </div>
-                
-                <div class="form-group">
-                    <label>Plage de dates</label>
-                    <div class="date-range-inputs">
-                        <div class="date-input">
-                            <label for="startDateFilter">Du</label>
-                            <input type="date" id="startDateFilter">
-                        </div>
-                        <div class="date-input">
-                            <label for="endDateFilter">Au</label>
-                            <input type="date" id="endDateFilter">
+                <div class="side-panel-content">
+                    <div class="form-group">
+                        <label for="searchInput">Recherche par mots-clés</label>
+                        <input type="text" id="searchInput" placeholder="Titre, description...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Plage de dates</label>
+                        <div class="date-range-inputs">
+                            <div class="date-input">
+                                <label for="startDateFilter">Du</label>
+                                <input type="date" id="startDateFilter">
+                            </div>
+                            <div class="date-input">
+                                <label for="endDateFilter">Au</label>
+                                <input type="date" id="endDateFilter">
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="category-filter-container">
-                    <h4>Filtrer par catégorie</h4>
-                    <div class="category-filter" id="categoryFilter">
-                        <!-- Les filtres de catégories seront générés ici -->
+                    <div class="category-filter-container">
+                        <h4>Filtrer par catégorie</h4>
+                        <div class="category-filter" id="categoryFilter">
+                            <!-- Les filtres de catégories seront générés ici -->
+                        </div>
+                        <div class="category-filter" id="categoryFilter">
+                            <!-- Les filtres de catégories seront générés ici par JavaScript -->
+                        </div>
                     </div>
-                    <div id="selectedCategoriesContainer" class="selected-categories-container">
-                        <!-- Les badges de catégories sélectionnées apparaîtront ici -->
+                    
+                    <div class="toggle-container">
+                        <div class="toggle-label">Gratuits uniquement</div>
+                        <label class="switch">
+                            <input type="checkbox" id="freeEventsOnly">
+                            <span class="slider"></span>
+                        </label>
                     </div>
-                </div>
-                
-                <div class="toggle-container">
-                    <div class="toggle-label">Événements gratuits uniquement</div>
-                    <label class="switch">
-                        <input type="checkbox" id="freeEventsOnly">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-                
-                <div class="toggle-container">
-                    <div class="toggle-label">Événements pour enfants uniquement</div>
-                    <label class="switch">
-                        <input type="checkbox" id="childrenEventsOnly">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-                
-                <div class="toggle-container">
-                    <div class="toggle-label">Masquer les événements complets</div>
-                    <label class="switch">
-                        <input type="checkbox" id="hideFullEvents">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-                
-                <div class="filter-actions">
-                    <button id="applyFilters" class="btn-primary">Appliquer les filtres</button>
-                    <button id="resetFilters" class="btn-secondary">Réinitialiser</button>
+                    
+                    <div class="toggle-container">
+                        <div class="toggle-label">Activité enfants uniquement</div>
+                        <label class="switch">
+                            <input type="checkbox" id="childrenEventsOnly">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="toggle-container">
+                        <div class="toggle-label">Place disponible uniquement</div>
+                        <label class="switch">
+                            <input type="checkbox" id="hideFullEvents">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="filter-actions">
+                        <button id="resetFilters" class="btn-reset">Réinitialiser</button>
+                    </div>
                 </div>
             </div>
-        </div>
         
         <!-- Boutons flottants -->
         <div class="floating-buttons">

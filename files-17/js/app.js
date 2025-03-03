@@ -303,11 +303,11 @@ function applyFilters() {
 
 // Afficher le nombre de résultats de filtrage
 function showFilterResults(count) {
-    if (count === 0) {
-        showNotification(`Aucun événement ne correspond à vos critères`, 'info');
-    } else {
-        showNotification(`${count} événement${count > 1 ? 's' : ''} correspond${count > 1 ? 'ent' : ''} à vos critères`, 'success');
-    }
+    // if (count === 0) {
+    //     showNotification(`Aucun événement ne correspond à vos critères`, 'info');
+    // } else {
+    //     showNotification(`${count} événement${count > 1 ? 's' : ''} correspond${count > 1 ? 'ent' : ''} à vos critères`, 'success');
+    // }
 }
 
 // Gestionnaires pour les formulaires

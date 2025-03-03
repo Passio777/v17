@@ -317,20 +317,22 @@ h1:hover .header-accent::after {
 }
 
 /* =========================================
-   PANNEAU LATÉRAL DES FILTRES
+   PANNEAU LATÉRAL DE FILTRES MODERNISÉ
    ========================================= */
-.side-panel {
+
+   .side-panel {
     position: fixed;
     top: 0;
     right: -350px;
     width: 320px;
     height: 100vh;
     background-color: white;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
     z-index: 999;
     overflow-y: auto;
-    transition: right 0.3s ease;
+    transition: right 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     padding-top: 60px;
+    border-radius: 15px 0 0 15px;
 }
 
 .side-panel.active {
@@ -341,27 +343,63 @@ h1:hover .header-accent::after {
     position: fixed;
     top: 0;
     width: 320px;
-    padding: 15px 20px;
+    padding: 18px 20px;
     background-color: white;
-    border-bottom: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 15px 0 0 0;
 }
 
 .side-panel-header h2 {
     margin: 0;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary);
 }
 
 .side-panel-content {
-    padding: 20px;
+    padding: 25px 20px;
 }
 
+/* Amélioration des groupes de formulaires */
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+    color: #444;
+    font-size: 0.9rem;
+}
+
+/* Champs de texte */
+.side-panel input[type="text"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.side-panel input[type="text"]:focus {
+    border-color: var(--primary);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+    outline: none;
+}
+
+/* Date range inputs */
 .date-range-inputs {
     display: flex;
-    gap: 10px;
+    gap: 12px;
+    margin-top: 5px;
 }
 
 .date-input {
@@ -369,16 +407,210 @@ h1:hover .header-accent::after {
 }
 
 .date-input label {
-    display: block;
+    font-size: 0.8rem;
+    color: #777;
     margin-bottom: 5px;
-    font-size: 0.9rem;
-    color: var(--gray);
 }
 
-.filter-actions {
-    margin-top: var(--space-lg);
+.side-panel input[type="date"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    font-size: 0.85rem;
+}
+
+.side-panel input[type="date"]:focus {
+    border-color: var(--primary);
+    background-color: #fff;
+    outline: none;
+}
+
+/* Container des filtres de catégorie */
+.category-filter-container {
+    margin-top: 5px;
+    margin-bottom: 25px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #eaecef;
+    transition: all 0.2s ease;
+}
+
+.category-filter-container:hover {
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.category-filter-container h4 {
+    margin: 0 0 12px 0;
+    font-size: 0.9rem;
+    color: #444;
+    font-weight: 600;
+}
+
+/* Toggles */
+.toggle-container {
     display: flex;
-    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.toggle-container:hover {
+    background-color: #f2f2f2;
+}
+
+.toggle-label {
+    font-weight: 500;
+    flex-grow: 1;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+/* Switch personalisation */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .3s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--primary);
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px);
+}
+
+/* Bouton de réinitialisation */
+.filter-actions {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#resetFilters {
+    background-color: #f5f5f5;
+    color: #666;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+#resetFilters:hover {
+    background-color: #e9e9e9;
+    color: #444;
+    transform: translateY(-1px);
+}
+
+#resetFilters:before {
+    content: "↺";
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+
+/* Bouton de fermeture modernisé */
+#closeFilterBtn {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+#closeFilterBtn:hover {
+    background-color: #f5f5f5;
+    color: #666;
+}
+
+/* Animation d'entrée */
+.side-panel.active {
+    animation: slideIn 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0.8;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Adaptation mobile */
+@media (max-width: 768px) {
+    .side-panel {
+        width: 280px;
+    }
+    
+    .side-panel-header {
+        width: 280px;
+    }
+}
+
+/* Adaptation pour petits écrans */
+@media (max-width: 480px) {
+    .side-panel {
+        width: 100%;
+        right: -100%;
+        border-radius: 0;
+    }
+    
+    .side-panel-header {
+        width: 100%;
+        border-radius: 0;
+    }
 }
 
 /* =========================================
@@ -491,3 +723,253 @@ h1:hover .header-accent::after {
         font-size: 0.9rem;
     }
 }
+
+
+/* =========================================
+   PANNEAU LATÉRAL DE FILTRES MODERNISÉ
+   ========================================= */
+
+   .side-panel {
+    position: fixed;
+    top: 0;
+    right: -350px;
+    width: 320px;
+    height: 100vh;
+    background-color: white;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+    overflow-y: auto;
+    transition: right 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    padding-top: 60px;
+    border-radius: 15px 0 0 15px;
+}
+
+.side-panel.active {
+    right: 0;
+}
+
+.side-panel-header {
+    position: fixed;
+    top: 0;
+    width: 320px;
+    padding: 18px 20px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 15px 0 0 0;
+}
+
+.side-panel-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.side-panel-content {
+    padding: 25px 20px;
+}
+
+/* Amélioration des groupes de formulaires */
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+    color: #444;
+    font-size: 0.9rem;
+}
+
+/* Champs de texte */
+.side-panel input[type="text"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.side-panel input[type="text"]:focus {
+    border-color: var(--primary);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+    outline: none;
+}
+
+/* Date range inputs */
+.date-range-inputs {
+    display: flex;
+    gap: 12px;
+    margin-top: 5px;
+}
+
+.date-input {
+    flex: 1;
+}
+
+.date-input label {
+    font-size: 0.8rem;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.side-panel input[type="date"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    font-size: 0.85rem;
+}
+
+.side-panel input[type="date"]:focus {
+    border-color: var(--primary);
+    background-color: #fff;
+    outline: none;
+}
+
+/* Container des filtres de catégorie avec style moderne */
+.category-filter-container {
+    margin-top: 5px;
+    margin-bottom: 25px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #eaecef;
+    transition: all 0.2s ease;
+}
+
+.category-filter {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.category-filter-item {
+    display: flex;
+    align-items: center;
+    padding: 7px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    opacity: 0.5;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+}
+
+.category-filter-item[data-id="all"] {
+    background-color: #6c757d;
+    grid-column: 1 / -1;
+}
+
+.category-filter-item:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Style amélioré pour les éléments de filtre actifs, sans nécessiter de badges séparés */
+.category-filter-item.active {
+    opacity: 1;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    font-weight: 600;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.2;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+}
+
+/* Surbrillance de l'icône dans les éléments sélectionnés */
+.category-filter-item.active span:first-child {
+    transform: scale(1.1);
+}
+
+/* Disposition en grille pour une meilleure présentation */
+.category-filter {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+}
+
+/* Assurer que "Toutes les catégories" prend toute la largeur */
+.category-filter-item[data-id="all"] {
+    grid-column: 1 / -1;
+    text-align: center;
+    justify-content: center;
+}
+
+.category-filter-item.active::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: inherit;
+    animation: pulse 1.5s infinite;
+}
+
+.category-filter-item span {
+    margin-right: 8px;
+    font-size: 1em;
+}
+
+/* Container des badges sélectionnés */
+.selected-categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 15px 0 10px;
+}
+
+.selected-category-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 500;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    margin: 3px;
+    transition: all 0.2s ease;
+}
+
+.selected-category-badge .category-icon {
+    margin-right: 8px;
+    font-size: 1em;
+}
+
+.selected-category-badge .category-name {
+    margin-right: 5px;
+}
+
+.selected-category-badge .remove-category {
+    display: flex;
+    align-items:
