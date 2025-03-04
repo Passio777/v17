@@ -212,3 +212,189 @@
     margin-right: 5px;
     color: var(--warning);
 }
+
+/* =========================================
+   STYLE RAFFINÉ POUR LES POPUPS D'ÉVÉNEMENT
+   ========================================= */
+
+/* Style de base pour l'infobulle Leaflet */
+.leaflet-popup {
+    transform-origin: bottom center;
+}
+
+.leaflet-popup-content-wrapper {
+    padding: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: none;
+    background-color: white;
+}
+
+.leaflet-popup-tip {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+/* Contenu principal de l'infobulle */
+.event-popup {
+    position: relative;
+    overflow: hidden;
+    min-width: 270px;
+    max-width: 320px;
+}
+
+/* En-tête avec le titre mis en valeur */
+.event-popup-header {
+    position: relative;
+    padding: 20px 15px 15px;
+    text-align: center;
+    background-color: #f7f8fa;
+    border-bottom: 1px solid #ebeef2;
+}
+
+/* Indication subtile de la catégorie par une bordure supérieure colorée */
+.event-popup-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: var(--category-color, #3498db);
+}
+
+/* Style moderne pour le titre */
+.event-popup-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #32325d;
+    line-height: 1.4;
+    position: relative;
+    display: inline-block;
+    padding: 0 5px;
+}
+
+/* Badge de catégorie discret */
+.category-indicator {
+    display: inline-block;
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 5px;
+    background-color: rgba(var(--category-r), var(--category-g), var(--category-b), 0.08);
+    padding: 3px 8px;
+    border-radius: 12px;
+}
+
+.category-indicator i {
+    margin-right: 5px;
+    color: rgba(var(--category-r), var(--category-g), var(--category-b), 0.7);
+}
+
+/* Contenu principal */
+.event-popup-content {
+    padding: 15px;
+    background-color: white;
+}
+
+/* Lignes d'information */ 
+.event-popup-content p {
+    margin-bottom: 10px;
+    font-size: 13px;
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.6;
+    color: #4a5568;
+}
+
+/* Style uniforme pour toutes les icônes */
+.event-popup-content i {
+    margin-right: 10px;
+    color: #6b7280;
+    width: 16px;
+    text-align: center;
+    margin-top: 3px;
+}
+
+/* Style standardisé pour le pied de popup */
+.event-popup-footer {
+    padding: 15px;
+    background-color: #f7f8fa;
+    border-top: 1px solid #ebeef2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Bouton d'action standardisé */
+.event-action-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.event-action-btn:hover {
+    background-color: #2980b9;
+    box-shadow: 0 3px 8px rgba(52, 152, 219, 0.4);
+}
+
+/* Mise en forme pour les indicateurs de prix et places */
+.price-paid, .price-free, .places-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.price-paid {
+    background-color: #fff7e6;
+    color: #ff9500;
+}
+
+.price-free {
+    background-color: #e6ffec;
+    color: #28a745;
+}
+
+.places-badge.places-available {
+    background-color: #e6ffec;
+    color: #28a745;
+}
+
+.places-badge.places-limited {
+    background-color: #fff7e6;
+    color: #ff9500;
+}
+
+.places-badge.places-full {
+    background-color: #ffe6e6;
+    color: #dc3545;
+}
+
+/* Style pour les événements enfants uniquement */
+.children-only-bubble {
+    background-color: #fff7e6;
+    color: #ff9500;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.children-only-bubble i {
+    color: #ff9500 !important;
+}

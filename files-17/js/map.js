@@ -245,6 +245,7 @@ function loadEvents() {
 }
 
 // Ajouter un marqueur d'événement sur la carte avec un style amélioré
+// Ajouter un marqueur d'événement sur la carte avec un style amélioré et popup modernisé
 function addEventMarker(event) {
     // Déterminer le style du marqueur en fonction du type d'événement et de la catégorie
     let markerColor, markerIcon;
@@ -282,8 +283,12 @@ function addEventMarker(event) {
         // Stocker ces valeurs
         event.categoryColor = markerColor;
         event.categoryIcon = markerIcon;
-        event.categoryName = event.isChildrenOnly ? "Enfants" : (event.isPaid ? "Événement payant" : "Événement gratuit");
+        event.categoryName = event.isChildrenOnly ? "Enfants" : (event.isPaid ? "Événement payant" : "Tarif : ");
     }
+    
+    // Extraire les composantes RGB de la couleur pour les variables CSS
+    const rgbValues = hexToRgb(markerColor);
+    const rgbString = rgbValues ? `${rgbValues.r}, ${rgbValues.g}, ${rgbValues.b}` : '52, 152, 219'; // Valeur par défaut si conversion échoue
     
     // Vérifier si l'événement est dans moins de 4 jours
     const now = new Date();
@@ -375,37 +380,27 @@ function addEventMarker(event) {
         `;
     }
     
-    // Ajouter un badge de catégorie dans le popup si disponible
-    let categoryBadge = '';
-    if (event.categoryName) {
-        categoryBadge = `
-            <div class="event-category-badge" style="background-color: ${event.categoryColor}">
-                <span class="category-icon">${event.categoryIcon}</span>
-                <span class="category-name">${event.categoryName}</span>
-            </div>
-        `;
-    }
-
-    // Créer un contenu de popup amélioré avec le badge de catégorie
-    const popupContent = `
-        <div class="event-popup">
-            <div class="event-popup-header">
-                <h3>${event.title}</h3>
-                ${categoryBadge}
-            </div>
-            <div class="event-popup-content">
-                <p class="event-date"><i class="far fa-calendar-alt"></i> ${formattedDate}</p>
-                <p><i class="fas fa-map-marker-alt"></i> ${event.location.split(',')[0]}</p>
-                <p><i class="fas fa-tag"></i> ${priceDisplay} &bull; ${placesText}</p>
-                <p><i class="far fa-file-alt"></i> ${event.description.substring(0, 80)}${event.description.length > 80 ? '...' : ''}</p>
-                ${event.isChildrenOnly ? '<p class="children-only-bubble"><i class="fas fa-child"></i> Réservé aux enfants</p>' : ''}
-                <p class="event-creator"><i class="fas fa-user"></i> Créé par ${creatorName}</p>
-            </div>
-            <div class="event-popup-footer">
-                ${inscriptionButton}
-            </div>
+    // Créer un contenu de popup amélioré avec le nouveau design
+const popupContent = `
+    <div class="event-popup">
+        <div class="event-popup-header">
+            <h3>${event.title}</h3>
         </div>
-    `;
+        <div class="event-popup-content">
+            ${event.categoryName ? `<p><i class="fas fa-folder"></i>  ${event.categoryName}</p>` : ''}
+            <p class="event-date"><i class="far fa-calendar-alt"></i> ${formattedDate}</p>
+            <p><i class="fas fa-map-marker-alt"></i> ${event.location.split(',')[0]}</p>
+            <p><i class="fas fa-tag"></i> ${priceDisplay} &bull; ${placesText}</p>
+
+            <p><i class="far fa-file-alt"></i> ${event.description.substring(0, 80)}${event.description.length > 80 ? '...' : ''}</p>
+            ${event.isChildrenOnly ? '<p class="children-only-bubble"><i class="fas fa-child"></i> Réservé aux enfants</p>' : ''}
+            <p class="event-creator"><i class="fas fa-user"></i> Créé par ${creatorName}</p>
+        </div>
+        <div class="event-popup-footer">
+            ${inscriptionButton}
+        </div>
+    </div>
+`;
     
     // Créer une popup avec la nouvelle apparence
     const popup = L.popup({
@@ -465,6 +460,31 @@ function addEventMarker(event) {
     return marker;
 }
 
+// Fonction utilitaire pour convertir une couleur hex en RGB
+function hexToRgb(hex) {
+    if (!hex) return null;
+    
+    // Supprime le # si présent
+    hex = hex.replace('#', '');
+    
+    // Forme courte (par exemple #fff)
+    if (hex.length === 3) {
+        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    }
+    
+    // Vérifier si la longueur est valide
+    if (hex.length !== 6) {
+        return null;
+    }
+    
+    // Convertir
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    
+    return { r, g, b };
+}
+
 // Fonction utilitaire pour ajuster les couleurs (foncer ou éclaircir)
 function adjustColor(color, amount) {
     // Convertir la couleur hex en RGB
@@ -521,7 +541,6 @@ function showEventDetails(eventId) {
     
     document.querySelector('.event-title-container').innerHTML = `
     <h2 id="detailsTitle">${eventData.title}</h2>
-    ${categoryHtml}
 `;
 
     // Remplir la modal avec les détails de l'événement
@@ -553,7 +572,7 @@ function showEventDetails(eventId) {
     // Afficher le prix si payant avec un style amélioré
     const priceElement = document.getElementById('detailsPrice');
     if (eventData.isPaid) {
-        priceElement.innerHTML = `<p><i class="fas fa-tag"></i> <strong>Prix:</strong> <span class="price-paid">${eventData.price}€</span></p>`;
+        priceElement.innerHTML = `<p><i class="fas fa-tag"></i> <strong>Tarif : </strong> <span class="price-paid">${eventData.price}€</span></p>`;
         priceElement.classList.remove('hidden');
     } else {
         priceElement.innerHTML = `<p><i class="fas fa-tag"></i> <strong>Événement gratuit</strong> <span class="price-free">Gratuit</span></p>`;
@@ -569,7 +588,7 @@ function showEventDetails(eventId) {
         placesElement.innerHTML = `<p><i class="fas fa-users"></i> <strong>Places disponibles:</strong> <span class="${placesClass}">${placesLeft} sur ${eventData.places}</span></p>`;
         placesElement.classList.remove('hidden');
     } else {
-        placesElement.innerHTML = `<p><i class="fas fa-users"></i> <strong>Places illimitées</strong> <span class="places-available">Illimité</span></p>`;
+        placesElement.innerHTML = `<p><i class="fas fa-users"></i> <strong>Places disponibles :</strong> <span class="places-available">Illimité</span></p>`;
         placesElement.classList.remove('hidden');
     }
     

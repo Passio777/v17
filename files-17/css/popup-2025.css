@@ -1,0 +1,316 @@
+/* Popup Event Design 2025 - Glassmorphism 3D Hypermodern */
+
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.75);
+  --accent-gradient: linear-gradient(135deg, #6366f1, #8b5cf6, #d946ef);
+  --accent-glow: 0 0 15px rgba(139, 92, 246, 0.5);
+  --popup-border-radius: 20px;
+  --neumorph-light: rgba(255, 255, 255, 0.1);
+  --neumorph-dark: rgba(0, 0, 0, 0.15);
+  --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Hyper-modern Popup Container */
+.leaflet-popup-content-wrapper {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--popup-border-radius) !important;
+  box-shadow: var(--glass-shadow), inset 0 1px 1px var(--neumorph-light);
+  overflow: hidden;
+  transition: all 0.4s var(--transition-bounce);
+  transform: translateZ(0);
+}
+
+.leaflet-popup-tip {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--glass-shadow);
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  color: var(--text-primary);
+  width: 300px !important;
+}
+
+/* Event Popup Header */
+.event-popup-header {
+  position: relative;
+  padding: 24px 24px 12px;
+  border-bottom: none !important;
+  background: linear-gradient(to bottom, rgba(99, 102, 241, 0.15), transparent);
+}
+
+.event-popup-header h3 {
+  margin: 0;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.event-popup-header::after {
+  display: none;
+}
+
+/* 3D Floating Title Effect */
+.event-popup-header h3 {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transform: translateZ(10px);
+  transition: transform 0.3s ease;
+}
+
+.event-popup:hover .event-popup-header h3 {
+  transform: translateZ(15px);
+}
+
+/* Event Popup Content */
+.event-popup-content {
+  padding: 12px 24px 18px !important;
+  background: transparent !important;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Info Row Styling with Hover Effects */
+.event-popup-content p {
+  margin: 0 !important;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0 !important;
+}
+
+.event-popup-content p::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.event-popup-content p:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(5px);
+}
+
+.event-popup-content p:hover::before {
+  opacity: 0.15;
+}
+
+/* Icon Styling */
+.event-popup-content i {
+  margin-right: 12px !important;
+  width: 18px !important;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1rem !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Category Styling - Special Treatment */
+.event-popup-content p:nth-child(4) {
+  background: rgba(99, 102, 241, 0.15);
+  border-left: 3px solid #6366f1;
+}
+
+.event-popup-content p:nth-child(4) i {
+  color: #6366f1;
+  background: none;
+  -webkit-text-fill-color: initial;
+}
+
+/* Footer Styling */
+.event-popup-footer {
+  padding: 16px 24px !important;
+  background: rgba(0, 0, 0, 0.1) !important;
+  border-top: 1px solid var(--glass-border) !important;
+  display: flex;
+  justify-content: center !important;
+}
+
+/* Button Styling */
+.event-action-btn {
+  background: var(--accent-gradient) !important;
+  color: white !important;
+  border: none !important;
+  padding: 10px 20px !important;
+  border-radius: 50px !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transform: translateY(0) !important;
+  transition: all 0.3s var(--transition-bounce) !important;
+  box-shadow: var(--accent-glow), 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  justify-content: center !important;
+}
+
+.event-action-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.7s ease;
+}
+
+.event-action-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--accent-glow), 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.event-action-btn:hover::before {
+  left: 100%;
+}
+
+/* Dark Mode Optimizations */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --glass-bg: rgba(23, 23, 23, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* Light Mode Optimizations */
+@media (prefers-color-scheme: light) {
+  :root {
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --text-primary: rgba(0, 0, 0, 0.9);
+    --text-secondary: rgba(0, 0, 0, 0.65);
+  }
+  
+  .event-popup-content i {
+    filter: drop-shadow(0 1px 3px rgba(99, 102, 241, 0.3));
+  }
+}
+
+/* Animation for popup appearance */
+.leaflet-popup {
+  animation: popup-entrance 0.5s var(--transition-bounce) forwards;
+}
+
+@keyframes popup-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Price and availability styling */
+.price-paid, .price-free {
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.price-paid {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.price-free {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.places-badge {
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.places-available {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.places-limited {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.places-full {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+/* Children Only Notice */
+.children-only-bubble {
+  background: linear-gradient(to right, rgba(245, 158, 11, 0.3), rgba(245, 158, 11, 0.1)) !important;
+  border-left: 3px solid #f59e0b !important;
+}
+
+.children-only-bubble i {
+  color: #f59e0b !important;
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+}
+
+/* Creator info */
+.event-creator {
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  margin-top: 4px !important;
+  padding-top: 12px !important;
+  font-style: italic;
+  color: var(--text-secondary) !important;
+  background: transparent !important;
+}
+
+.event-creator:hover {
+  background: transparent !important;
+}
+
+/* Custom scrollbar for description */
+.event-popup::-webkit-scrollbar {
+  width: 4px;
+}
+
+.event-popup::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.event-popup::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}

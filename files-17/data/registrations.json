@@ -70,5 +70,45 @@
         "participantId": "67c5836d27f5b7d815c294704abe5",
         "participantType": "child",
         "registeredAt": "2025-03-03 17:34:05"
+    },
+    {
+        "id": "67c605615fe998fb0f996e74abab9",
+        "eventId": "67c60550c7b9622e22d447ffa8ed8",
+        "userId": "67c5836d27f5ceb4b233c05cf0f25",
+        "participantId": "67c5836d27f5ceb4b233c05cf0f25",
+        "participantType": "adult",
+        "registeredAt": "2025-03-03 19:39:13"
+    },
+    {
+        "id": "67c605615feaa94170874b087c03b",
+        "eventId": "67c60550c7b9622e22d447ffa8ed8",
+        "userId": "67c5836d27f5ceb4b233c05cf0f25",
+        "participantId": "67c5836d27f5398826bb41b0d29f7",
+        "participantType": "child",
+        "registeredAt": "2025-03-03 19:39:13"
+    },
+    {
+        "id": "67c605615feabce219427ed07d6ea",
+        "eventId": "67c60550c7b9622e22d447ffa8ed8",
+        "userId": "67c5836d27f5ceb4b233c05cf0f25",
+        "participantId": "67c5836d27f5b7d815c294704abe5",
+        "participantType": "child",
+        "registeredAt": "2025-03-03 19:39:13"
+    },
+    {
+        "id": "67c619fe561cffd9d4489f3e0934f",
+        "eventId": "67c57d7dcc9f0273370a60ca7f994",
+        "userId": "67c5836d27f5ceb4b233c05cf0f25",
+        "participantId": "67c5836d27f5398826bb41b0d29f7",
+        "participantType": "child",
+        "registeredAt": "2025-03-03 21:07:10"
+    },
+    {
+        "id": "67c619fe56200718c09f63ad46058",
+        "eventId": "67c57d7dcc9f0273370a60ca7f994",
+        "userId": "67c5836d27f5ceb4b233c05cf0f25",
+        "participantId": "67c5836d27f5b7d815c294704abe5",
+        "participantType": "child",
+        "registeredAt": "2025-03-03 21:07:10"
     }
 ]

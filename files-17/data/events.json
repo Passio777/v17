@@ -178,5 +178,23 @@
         "createdBy": "67c5836d27f5ceb4b233c05cf0f25",
         "createdAt": "2025-03-03 17:33:45",
         "categoryId": 1
+    },
+    {
+        "id": "67c60550c7b9622e22d447ffa8ed8",
+        "title": "xxx",
+        "startDate": "2025-03-03T21:38",
+        "endDate": null,
+        "description": "xxxx",
+        "location": "Route de Saint-Éloy, Le Buisson, Auzelles, Ambert, Puy-de-Dôme, Auvergne-Rhône-Alpes, France métropolitaine, 63590, France",
+        "lat": 45.583289756006316,
+        "lng": 3.5595703125,
+        "isPaid": false,
+        "price": 0,
+        "isLimited": true,
+        "places": 24,
+        "isChildrenOnly": false,
+        "createdBy": "67c5836d27f5ceb4b233c05cf0f25",
+        "createdAt": "2025-03-03 19:38:56",
+        "categoryId": 4
     }
 ]
